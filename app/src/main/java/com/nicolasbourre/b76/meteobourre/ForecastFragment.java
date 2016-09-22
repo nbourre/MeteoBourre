@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class ForecastFragment extends Fragment {
 
     public ForecastFragment() {
+
     }
 
     @Override
@@ -32,6 +33,7 @@ public class ForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
 
         ArrayList<String> weekForecast = new ArrayList<String>();
 

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "com.nicolasbourre.b76.meteobourre"
         minSdkVersion 17
@@ -16,6 +16,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    buildTypes.each {
+        it.buildConfigField 'String', 'OPEN_WEATHER_MAP_API_KEY', "\"52d0d5f54ec34076e9dfd40dc192a12a\""
     }
 }
 

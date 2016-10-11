@@ -39,6 +39,7 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment {
 
+    public static String TAG_FRAMENT = ForecastFragment.class.getSimpleName();
 
     ArrayAdapter<String> mForecastAdapter;
 
@@ -70,7 +71,6 @@ public class ForecastFragment extends Fragment {
                 return true;
             case R.id.action_settings:
                 Log.d(ForecastFragment.class.getSimpleName(), "Paramètres");
-                launchSettingsFragment();
                 return true;
             default:
                 Log.d(ForecastFragment.class.getSimpleName(), "Non reconnu");
@@ -327,15 +327,5 @@ public class ForecastFragment extends Fragment {
         }
     }
 
-    private void launchSettingsFragment() {
-
-//        SettingsFragment settingsFragment = new SettingsFragment();
-//
-//        getFragmentManager().beginTransaction()
-//                .replace(R.id.fragment, settingsFragment)
-//                .addToBackStack(null)
-//                .commit();
-
-    }
 
 }

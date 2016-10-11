@@ -21,9 +21,6 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new DetailFragment())
@@ -34,7 +31,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.detail, menu);
+        //getMenuInflater().inflate(R.menu.detail, menu);
         return true;
     }
 
@@ -72,7 +69,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
             if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
-                String forecastStr = intent.getStringExtra(intent.EXTRA_TEXT);
+                String forecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
 
                 ((TextView) rootView.findViewById(R.id.detail_text)).setText(forecastStr);
             }

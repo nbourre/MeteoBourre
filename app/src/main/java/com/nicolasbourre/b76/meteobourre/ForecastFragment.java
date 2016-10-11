@@ -63,14 +63,19 @@ public class ForecastFragment extends Fragment {
 
         int id = item.getItemId();
 
-        if (id == R.id.action_refresh) {
-
-            (new FetchForecastTask()).execute("g0x 2p0");
-
-            return true;
+        switch (id) {
+            case R.id.action_refresh:
+                (new FetchForecastTask()).execute("g0x 2p0");
+                Log.d(ForecastFragment.class.getSimpleName(), "Données rafraîchies");
+                return true;
+            case R.id.action_settings:
+                Log.d(ForecastFragment.class.getSimpleName(), "Paramètres");
+                launchSettingsFragment();
+                return true;
+            default:
+                Log.d(ForecastFragment.class.getSimpleName(), "Non reconnu");
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
 
@@ -320,6 +325,17 @@ public class ForecastFragment extends Fragment {
                 mForecastAdapter.addAll(result);
             }
         }
+    }
+
+    private void launchSettingsFragment() {
+
+//        SettingsFragment settingsFragment = new SettingsFragment();
+//
+//        getFragmentManager().beginTransaction()
+//                .replace(R.id.fragment, settingsFragment)
+//                .addToBackStack(null)
+//                .commit();
+
     }
 
 }

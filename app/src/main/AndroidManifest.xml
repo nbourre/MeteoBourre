@@ -25,7 +25,8 @@
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nicolasbourre.b76.meteobourre.MainActivity" />
@@ -33,10 +34,10 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".DetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nicolasbourre.b76.meteobourre.MainActivity" />
+                android:value="com.nicolasbourre.b76.meteobourre.DetailActivity" />
         </activity>
     </application>
 

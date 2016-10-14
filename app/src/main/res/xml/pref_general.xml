@@ -9,7 +9,7 @@
         android:selectAllOnFocus="true"
         android:defaultValue="G9N6V8"
         android:singleLine="true"
-        android:title="@string/pref_title_zip_code" />
+        android:title="@string/pref_title_location" />
 
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it. -->

@@ -1,8 +1,12 @@
 package com.nicolasbourre.b76.meteobourre;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Debug;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +43,8 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment {
 
-    public static String TAG_FRAMENT = ForecastFragment.class.getSimpleName();
+    public static String TAG_FRAGMENT = ForecastFragment.class.getSimpleName();
+
 
     ArrayAdapter<String> mForecastAdapter;
 
@@ -65,20 +70,19 @@ public class ForecastFragment extends Fragment {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.action_refresh:
-                (new FetchForecastTask()).execute("g0x 2p0");
-                Log.d(ForecastFragment.class.getSimpleName(), "Données rafraîchies");
-                return true;
-            case R.id.action_settings:
-                Log.d(ForecastFragment.class.getSimpleName(), "Paramètres");
-                return true;
+
+
             default:
                 Log.d(ForecastFragment.class.getSimpleName(), "Non reconnu");
                 return super.onOptionsItemSelected(item);
         }
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        weatherUpdate();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,14 +90,7 @@ public class ForecastFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-
-        String [] data = new String[15];
-
-        for (int i = 0; i < 15; i++) {
-            data[i] = ("Day " + i);
-        }
-
-        final List<String> weekForecast = new ArrayList<>(Arrays.asList(data));
+        final List<String> weekForecast = new ArrayList<>();
 
         mForecastAdapter =
                 new ArrayAdapter<>(
@@ -128,6 +125,20 @@ public class ForecastFragment extends Fragment {
 
         private final String LOG_TAG = FetchForecastTask.class.getSimpleName();
 
+        String units = "";
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            String defaultUnits = getString(R.string.pref_default_units);
+            units = sharedPreferences.getString(getString(R.string.pref_key_units), defaultUnits);
+
+        }
+
+
+
         protected String[] doInBackground(String... params) {
             // These two need to be declared outside the try/catch
             // so that they can be closed in the finally block.
@@ -138,7 +149,7 @@ public class ForecastFragment extends Fragment {
             String forecastJsonStr = null;
 
             String format = "json";
-            String units = "metric";
+
             int numDays = 7;
 
             try {
@@ -170,7 +181,6 @@ public class ForecastFragment extends Fragment {
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
 
-                String logTag = "ForecastFragment";
 
                 // Read the input stream into a String
                 InputStream inputStream = urlConnection.getInputStream();
@@ -326,6 +336,17 @@ public class ForecastFragment extends Fragment {
             }
         }
     }
+
+    private void weatherUpdate() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String defaultZip = getString(R.string.pref_default_zipCode);
+        String zipCode = sharedPreferences.getString(getString(R.string.pref_key_zipCode), defaultZip);
+        (new FetchForecastTask()).execute(zipCode);
+    }
+
+
+
+
 
 
 }

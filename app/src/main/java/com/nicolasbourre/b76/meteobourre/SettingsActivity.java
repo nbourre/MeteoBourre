@@ -153,8 +153,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("zip_code"));
-            bindPreferenceSummaryToValue(findPreference("units"));
+            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_key_zipCode)));
+            bindPreferenceSummaryToValue(findPreference(getResources().getString(R.string.pref_key_units)));
         }
 
         @Override
@@ -164,6 +164,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
                 return true;
             }
+
+
             return super.onOptionsItemSelected(item);
         }
     }

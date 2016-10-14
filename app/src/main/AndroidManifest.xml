@@ -19,6 +19,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
         </activity>
         <activity
@@ -34,10 +35,10 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".DetailActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nicolasbourre.b76.meteobourre.DetailActivity" />
+                android:value="com.nicolasbourre.b76.meteobourre.MainActivity" />
         </activity>
     </application>
 
